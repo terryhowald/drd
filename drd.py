@@ -146,6 +146,8 @@ class Game:
         self.redshirts = []
         self.redshirts_pos = []
         self.redshirt_list = None
+        self.phaser = []
+        self.phaserfire = False
 
     def new(self):
         # Start a new grame
@@ -339,18 +341,38 @@ class Game:
 
         # Determine if a redshirt should fire on the creature  
         creature_x_index = self.creature.rect.x//TILESIZE   
-        creature_y_index = self.creature.rect.y//TILESIZE                                         
+        creature_y_index = self.creature.rect.y//TILESIZE 
+        self.phaserfire = False    
+        self.phaser = []                            
         for i in range(0, REDSHIRT_COUNT):
             # Check for horizontal line of site
             redshirt_x_index = self.redshirts[i].rect.x//TILESIZE
             redshirt_y_index = self.redshirts[i].rect.y//TILESIZE                        
             if redshirt_y_index == creature_y_index:
+                line_of_sight = False
                 dist = (redshirt_x_index - creature_x_index)
-                line_of_sight = 0
-                #for x_index in range(redshirt_y_index, creature_x_index):
-                #    if self.tile_map[x_index][y_index]:
-
-                print("Fire!", dist)
+                if dist > 0:
+                    for x in range(creature_x_index, redshirt_x_index):
+                        if self.tile_map[x][redshirt_y_index]:
+                            line_of_sight = True
+                    if not line_of_sight:
+                        self.phaserfire = True
+                        self.phaser.append(self.creature.rect.centerx)
+                        self.phaser.append(self.redshirts[i].rect.centery)
+                        dist = self.redshirts[i].rect.centerx - self.creature.rect.centerx
+                        self.phaser.append(self.creature.rect.x + dist)
+                        self.phaser.append(self.redshirts[i].rect.centery)
+                elif dist < 0:
+                    for x in range(redshirt_x_index, creature_x_index):
+                        if self.tile_map[x][redshirt_y_index]:
+                            line_of_sight = True
+                    if not line_of_sight:
+                        self.phaserfire = True
+                        self.phaser.append(self.redshirts[i].rect.centerx)
+                        self.phaser.append(self.redshirts[i].rect.centery)
+                        dist = self.creature.rect.centerx - self.redshirts[i].rect.centerx
+                        self.phaser.append(self.redshirts[i].rect.centerx + dist)
+                        self.phaser.append(self.redshirts[i].rect.centery)                   
 
 
     def events(self):
@@ -381,6 +403,11 @@ class Game:
         # Game loop - Draw
         self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
+
+        # Draw phaser fire
+        if self.phaserfire:
+            pygame.draw.line(self.screen,WHITE,(self.phaser[0], self.phaser[1]),(self.phaser[2], self.phaser[3]))
+
         # After drawing everything, flip the display
         pygame.display.flip()
 
