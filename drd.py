@@ -23,7 +23,6 @@ class Tile(pygame.sprite.Sprite):
 
 class Enemy(pygame.sprite.Sprite):
     # Sprite for the redshirt(s)
-    firing = False
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(os.path.join(img_folder, "redshirt.png")).convert()
@@ -35,6 +34,7 @@ class Enemy(pygame.sprite.Sprite):
         self.x_index = 0
         self.y_index = 0   
         self.dir_change = False
+        self.firing = False
 
     def update(self):
 
@@ -148,6 +148,7 @@ class Game:
         self.redshirt_list = None
         self.phaser = []
         self.phaserfire = False
+        self.phasercountdown = PHASER_COUNTDOWN
 
     def new(self):
         # Start a new grame
@@ -347,7 +348,9 @@ class Game:
         for i in range(0, REDSHIRT_COUNT):
             # Check for horizontal line of site
             redshirt_x_index = self.redshirts[i].rect.x//TILESIZE
-            redshirt_y_index = self.redshirts[i].rect.y//TILESIZE                        
+            redshirt_y_index = self.redshirts[i].rect.y//TILESIZE  
+            self.redshirts[i].x_speed = REDSHIRT_SPEED
+            self.redshirts[i].y_speed = REDSHIRT_SPEED                                  
             if redshirt_y_index == creature_y_index:
                 line_of_sight = False
                 dist = (redshirt_x_index - creature_x_index)
@@ -372,9 +375,13 @@ class Game:
                         self.phaser.append(self.redshirts[i].rect.centery)
                         dist = self.creature.rect.centerx - self.redshirts[i].rect.centerx
                         self.phaser.append(self.redshirts[i].rect.centerx + dist)
-                        self.phaser.append(self.redshirts[i].rect.centery)                   
+                        self.phaser.append(self.redshirts[i].rect.centery) 
 
+                if not self.phasercountdown:
+                    self.redshirts[i].x_speed = 0
+                    self.redshirts[i].y_speed = 0
 
+                                    
     def events(self):
        # Game loop - Events
 
@@ -406,7 +413,13 @@ class Game:
 
         # Draw phaser fire
         if self.phaserfire:
-            pygame.draw.line(self.screen,WHITE,(self.phaser[0], self.phaser[1]),(self.phaser[2], self.phaser[3]))
+            if not self.phasercountdown:
+                pygame.draw.line(self.screen,WHITE,(self.phaser[0], self.phaser[1]),(self.phaser[2], self.phaser[3]))
+
+            else:
+                self.phasercountdown -= 1
+        else:
+            self.phasercountdown = random.randint(PHASER_COUNTDOWN/2,PHASER_COUNTDOWN)
 
         # After drawing everything, flip the display
         pygame.display.flip()
