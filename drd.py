@@ -349,8 +349,7 @@ class Game:
             # Check for horizontal line of site
             redshirt_x_index = self.redshirts[i].rect.x//TILESIZE
             redshirt_y_index = self.redshirts[i].rect.y//TILESIZE  
-            self.redshirts[i].x_speed = REDSHIRT_SPEED
-            self.redshirts[i].y_speed = REDSHIRT_SPEED                                  
+            self.redshirts[i].x_speed = REDSHIRT_SPEED                                
             if redshirt_y_index == creature_y_index:
                 line_of_sight = False
                 dist = (redshirt_x_index - creature_x_index)
@@ -379,7 +378,7 @@ class Game:
 
                 if not self.phasercountdown:
                     self.redshirts[i].x_speed = 0
-                    self.redshirts[i].y_speed = 0
+                    self.creature.x_speed = 0
 
                                     
     def events(self):
