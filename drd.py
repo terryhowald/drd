@@ -9,6 +9,7 @@ from settings import *
 # Set up assets folders
 game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, "img")
+snd_folder = os.path.join(game_folder, "snd")
 
 class Tile(pygame.sprite.Sprite):
     # Sprite for a tile
@@ -129,6 +130,7 @@ class Player(pygame.sprite.Sprite):
 class Game:
     def __init__(self):
         # Initialize game window
+        pygame.mixer.pre_init(48000, -16, 2, 2048)
         pygame.init()
         pygame.mixer.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -149,6 +151,7 @@ class Game:
         self.phaser = []
         self.phaserfire = False
         self.phasercountdown = PHASER_COUNTDOWN
+        self.phasersnd = pygame.mixer.Sound(os.path.join(snd_folder, "tos_phaser_7.wav"))
 
     def new(self):
         # Start a new grame
@@ -211,7 +214,12 @@ class Game:
             redshirt.direction = self.redshirts_pos[i][2]
             self.all_sprites.add(redshirt) 
             self.redshirts.append(redshirt)   
-            self.redshirt_list.add(redshirt)           
+            self.redshirt_list.add(redshirt)    
+
+        # Background sound
+        pygame.mixer.music.load(os.path.join(snd_folder, "tos_planet_3.wav"))
+        pygame.mixer.music.play(-1)  
+        pygame.mixer.music.set_volume(0.2)                 
 
         # Let 'er rip!      
         self.run()
@@ -414,11 +422,18 @@ class Game:
         if self.phaserfire:
             if not self.phasercountdown:
                 pygame.draw.line(self.screen,WHITE,(self.phaser[0], self.phaser[1]),(self.phaser[2], self.phaser[3]))
+                self.phasersnd.set_volume(0.25)
+                self.phasersnd.play()                   
 
             else:
                 self.phasercountdown -= 1
         else:
             self.phasercountdown = random.randint(PHASER_COUNTDOWN/2,PHASER_COUNTDOWN)
+            #if self.phasersnd != None:
+            if self.phasersnd != None:
+                self.phasersnd.set_volume(0)
+                self.phasersnd.stop()
+            #self.pahsersnd = None
 
         # After drawing everything, flip the display
         pygame.display.flip()
