@@ -34,34 +34,47 @@ class Enemy(pygame.sprite.Sprite):
         self.y_speed = REDSHIRT_SPEED   
         self.x_index = 0
         self.y_index = 0   
-        self.dir_change = False
+        self.dir_change = True
         self.firing = False
+        self.old_dir = 0
 
     def update(self):
-
-        if self.dir_change == True:
-            self.dir_change = False
-            self.rect.centerx = (self.rect.centerx//TILESIZE)*TILESIZE + TILESIZE/2
-            self.rect.centery = (self.rect.centery//TILESIZE)*TILESIZE + TILESIZE/2          
-        
+      
         if self.direction == DIR_RIGHT:
             self.rect.x += self.x_speed
             if self.rect.right == WIDTH:
                 self.direction = DIR_LEFT
+                self.dir_change = True
         elif self.direction == DIR_LEFT:
             self.rect.x -= self.x_speed  
             if self.rect.left == 0:
-                self.direction = DIR_RIGHT          
+                self.direction = DIR_RIGHT  
+                self.dir_change = True        
         elif self.direction == DIR_UP:
             self.rect.y -= self.y_speed
             if self.rect.top == 0:
                 self.direction = DIR_DOWN
+                self.dir_change = True
         elif self.direction == DIR_DOWN:
             self.rect.y += self.y_speed  
             if self.rect.bottom == HEIGHT:
                 self.direction = DIR_UP  
+                self.dir_change = True
 
+        if self.dir_change == True:
+            self.dir_change = False
+            self.rect.centerx = (self.rect.centerx//TILESIZE)*TILESIZE + TILESIZE/2
+            self.rect.centery = (self.rect.centery//TILESIZE)*TILESIZE + TILESIZE/2  
 
+            # Reset image orientation
+            if self.old_dir == DIR_LEFT or self.old_dir == DIR_RIGHT:
+                if self.old_dir == DIR_RIGHT:
+                    self.image = pygame.transform.flip(self.image, True, False) 
+            self.old_dir = self.direction
+
+            # Set new image orientation
+            if self.direction == DIR_RIGHT:
+                self.image = pygame.transform.flip(self.image, True, False)                 
 
                      
 class Player(pygame.sprite.Sprite):
