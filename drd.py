@@ -277,7 +277,7 @@ class Game:
         pygame.sprite.spritecollide(self.creature, self.tile_list, True)
 
         # Check for collisions with creature and reshirts
-        pygame.sprite.spritecollide(self.creature, self.redshirt_list, True)        
+        #pygame.sprite.spritecollide(self.creature, self.redshirt_list, True)        
 
         # Determine if creature is tunneling
         x_index = self.creature.rect.centerx//TILESIZE
@@ -392,7 +392,7 @@ class Game:
             if redshirt_y_index == creature_y_index:
                 line_of_sight = False
                 dist = (redshirt_x_index - creature_x_index)
-                if dist > 0:
+                if dist > 0 and self.redshirts[i].direction == DIR_LEFT:
                     for x in range(creature_x_index, redshirt_x_index):
                         if self.tile_map[x][redshirt_y_index]:
                             line_of_sight = True
@@ -403,7 +403,7 @@ class Game:
                         dist = self.redshirts[i].rect.centerx - self.creature.rect.centerx
                         self.phaser.append(self.creature.rect.x + dist)
                         self.phaser.append(self.redshirts[i].rect.centery)
-                elif dist < 0:
+                elif dist < 0 and self.redshirts[i].direction == DIR_RIGHT:
                     for x in range(redshirt_x_index, creature_x_index):
                         if self.tile_map[x][redshirt_y_index]:
                             line_of_sight = True
@@ -447,7 +447,6 @@ class Game:
     def draw(self):
         # Game loop - Draw
         self.screen.fill(BLACK)
-        self.all_sprites.draw(self.screen)
 
         # Draw phaser fire
         if self.phaserfire:
@@ -465,6 +464,8 @@ class Game:
                 self.phasersnd.set_volume(0)
                 self.phasersnd.stop()
             #self.pahsersnd = None
+
+        self.all_sprites.draw(self.screen)            
 
         # After drawing everything, flip the display
         pygame.display.flip()
