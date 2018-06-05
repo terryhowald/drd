@@ -15,7 +15,7 @@ class Tile(pygame.sprite.Sprite):
     # Sprite for a tile
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(os.path.join(img_folder, "bg_tile.png")).convert()
+        self.image = pygame.image.load(os.path.join(img_folder, "rock_tile.png")).convert()
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
 
@@ -43,7 +43,7 @@ class Enemy(pygame.sprite.Sprite):
             self.dir_change = False
             self.rect.centerx = (self.rect.centerx//TILESIZE)*TILESIZE + TILESIZE/2
             self.rect.centery = (self.rect.centery//TILESIZE)*TILESIZE + TILESIZE/2          
-          
+        
         if self.direction == DIR_RIGHT:
             self.rect.x += self.x_speed
             if self.rect.right == WIDTH:
@@ -61,12 +61,14 @@ class Enemy(pygame.sprite.Sprite):
             if self.rect.bottom == HEIGHT:
                 self.direction = DIR_UP  
 
+
+
                      
 class Player(pygame.sprite.Sprite):
     # Sprite for the player
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(os.path.join(img_folder, "creature.png")).convert()
+        self.image = pygame.image.load(os.path.join(img_folder, "horta.png")).convert()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.x_speed = 2
@@ -88,19 +90,29 @@ class Player(pygame.sprite.Sprite):
         if self.orientation_change:
             self.orientation_change = False
             angle = 0
+            #self.image = pygame.transform.rotate(self.image, angle) 
             if self.orientation == VERTICAL:
                 self.orientation = HORIZONTAL
-                angle = 90
+                if self.dir == DIR_LEFT:
+                    angle = 90
+                else:
+                    angle = 270
             else:
                 self.orientation = VERTICAL
-                angle = -90
-            self.image = pygame.transform.rotate(self.image, angle) 
+                if self.dir == DIR_UP:
+                    angle = 0
+                else:
+                    angle = 180
+            #self.image = pygame.transform.rotate(self.image, angle) 
 
             # Adjust creature position to align with ground tiles
             self.rect.centerx = (self.rect.centerx//TILESIZE)*TILESIZE + TILESIZE/2
-            self.rect.centery = (self.rect.centery//TILESIZE)*TILESIZE + TILESIZE/2                                                
+            self.rect.centery = (self.rect.centery//TILESIZE)*TILESIZE + TILESIZE/2   
+                                           
        
     def move(self, keys):
+
+        dir = self.dir
 
         # Process keydowns
         if keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]:
@@ -122,6 +134,12 @@ class Player(pygame.sprite.Sprite):
             self.rect.y += self.y_speed        
             self.dir = DIR_DOWN
 
+        #self.image = pygame.transform.rotate(self.image, 0) 
+        if dir != self.dir:
+            dir *= -1
+            self.image = pygame.transform.rotate(self.image, dir) 
+            self.image = pygame.transform.rotate(self.image, self.dir) 
+
     def set_speed(self, xspeed, yspeed):
         self.x_speed = xspeed
         self.y_speed = yspeed
@@ -137,7 +155,7 @@ class Game:
         pygame.display.set_caption(TITLE)
         self.clock = pygame.time.Clock()        
         self.running = True
-        self.tile_img = pygame.image.load(os.path.join(img_folder, "bg_tile.png")).convert()
+        self.tile_img = pygame.image.load(os.path.join(img_folder, "rock_tile.png")).convert()
         self.tile_map = None
         self.all_sprites = None
         self.creature = None
