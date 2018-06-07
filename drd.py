@@ -22,6 +22,17 @@ class Tile(pygame.sprite.Sprite):
     def update(self):
         pass
 
+class Egg(pygame.sprite.Sprite):
+    # Sprite for a tile
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(os.path.join(img_folder, "egg.png")).convert()
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIDTH/2, HEIGHT/2)
+
+    def update(self):
+        pass        
+
 class Enemy(pygame.sprite.Sprite):
     # Sprite for the redshirt(s)
     def __init__(self):
