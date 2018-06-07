@@ -27,6 +27,7 @@ class Egg(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(os.path.join(img_folder, "egg.png")).convert()
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
 
@@ -184,6 +185,7 @@ class Game:
         self.all_sprites = None
         self.creature = None
         self.tile_list = None
+        self.egg_list = None
         self.creature_x_index = 0
         self.creature_y_index = 0
         self.redshirt = None
@@ -194,6 +196,7 @@ class Game:
         self.phaserfire = False
         self.phasercountdown = PHASER_COUNTDOWN
         self.phasersnd = pygame.mixer.Sound(os.path.join(snd_folder, "tos_phaser_7.wav"))
+        self.squashsnd = pygame.mixer.Sound(os.path.join(snd_folder, "squash.wav"))
 
     def new(self):
         # Start a new grame
@@ -228,6 +231,7 @@ class Game:
   
         # Setup sprites
         self.tile_list = pygame.sprite.Group()
+        self.egg_list = pygame.sprite.Group()
         self.redshirt_list = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
 
@@ -239,7 +243,17 @@ class Game:
                     tile.rect.x = x*TILESIZE
                     tile.rect.y = y*TILESIZE
                     self.tile_list.add(tile)
-                    self.all_sprites.add(tile)                          
+                    self.all_sprites.add(tile)    
+
+        # Create egg sprites
+        for x in range(0, int(WIDTH/TILESIZE)):
+            for y in range(0, int(HEIGHT/TILESIZE)):
+                if not self.tile_map[x][y]:  
+                    egg = Egg()    
+                    egg.rect.x = x*TILESIZE
+                    egg.rect.y = y*TILESIZE
+                    self.egg_list.add(egg)
+                    self.all_sprites.add(egg)                                            
 
         # Create creature sprite
         self.creature = Player()
@@ -261,7 +275,11 @@ class Game:
         # Background sound
         pygame.mixer.music.load(os.path.join(snd_folder, "tos_planet_3.wav"))
         pygame.mixer.music.play(-1)  
-        pygame.mixer.music.set_volume(0.2)                 
+        pygame.mixer.music.set_volume(0.2)   
+
+        # Set sound levels
+        self.squashsnd.set_volume(0.25) 
+        self.phasersnd.set_volume(0.25)            
 
         # Let 'er rip!      
         self.run()
@@ -288,8 +306,15 @@ class Game:
         pygame.sprite.spritecollide(self.creature, self.tile_list, True)
 
         # Check for collisions with creature and reshirts
-        #pygame.sprite.spritecollide(self.creature, self.redshirt_list, True)        
-
+        #pygame.sprite.spritecollide(self.creature, self.redshirt_list, True)   
+        
+        # Check for collisions with redshirts and eggs
+        for i in range(0, REDSHIRT_COUNT):
+            egg = pygame.sprite.spritecollide(self.redshirts[i], self.egg_list, True) 
+            if egg:
+                #self.squashsnd.set_volume(0.25)
+                self.squashsnd.play() 
+        
         # Determine if creature is tunneling
         x_index = self.creature.rect.centerx//TILESIZE
         y_index = self.creature.rect.centery//TILESIZE
@@ -463,7 +488,6 @@ class Game:
         if self.phaserfire:
             if not self.phasercountdown:
                 pygame.draw.line(self.screen,WHITE,(self.phaser[0], self.phaser[1]),(self.phaser[2], self.phaser[3]))
-                self.phasersnd.set_volume(0.25)
                 self.phasersnd.play()                   
 
             else:
@@ -472,7 +496,6 @@ class Game:
             self.phasercountdown = random.randint(PHASER_COUNTDOWN/2,PHASER_COUNTDOWN)
             #if self.phasersnd != None:
             if self.phasersnd != None:
-                self.phasersnd.set_volume(0)
                 self.phasersnd.stop()
             #self.pahsersnd = None
 

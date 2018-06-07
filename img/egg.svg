@@ -43,7 +43,7 @@
        x2="-164.80388"
        y2="177.79543"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.82266868,0,0,0.82266868,-33.192701,31.528695)" />
+       gradientTransform="matrix(0.69600345,0,0,0.69600345,-71.864643,64.175361)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -83,25 +83,25 @@
      id="layer1"
      transform="translate(0,-212.33332)">
     <circle
-       r="18.138653"
+       r="15.345868"
        transform="rotate(160.97046)"
-       cy="-254.55229"
-       cx="43.015644"
+       cy="-271.63205"
+       cx="48.906555"
        id="circle836"
-       style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:0.53744155;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:0.45469236;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <circle
-       style="fill:#ececec;fill-opacity:1;stroke:#000000;stroke-width:0.53744155;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ececec;fill-opacity:1;stroke:#000000;stroke-width:0.45469236;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path826"
-       cx="75.945694"
-       cy="-246.73766"
+       cx="84.020432"
+       cy="-262.90045"
        transform="rotate(153.45367)"
-       r="18.138653" />
+       r="15.345868" />
     <circle
-       cy="177.79543"
-       cx="-187.17906"
+       cy="187.92195"
+       cx="-202.14172"
        id="circle844"
-       style="fill:url(#linearGradient892);fill-opacity:1;stroke:#000000;stroke-width:0.53744155;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       r="18.138653"
+       style="fill:url(#linearGradient892);fill-opacity:1;stroke:#000000;stroke-width:0.45469236;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       r="15.345868"
        transform="rotate(-55.910772)" />
   </g>
 </svg>
