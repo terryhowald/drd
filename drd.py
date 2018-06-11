@@ -49,6 +49,7 @@ class Enemy(pygame.sprite.Sprite):
         self.dir_change = True
         self.firing = False
         self.old_dir = 0
+        self.id = None
 
     def update(self):
       
@@ -158,8 +159,9 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_DOWN]:
             self.rect.y += self.y_speed        
             self.dir = DIR_DOWN
+        if keys[pygame.K_SPACE]:
+            pass
 
-        #self.image = pygame.transform.rotate(self.image, 0) 
         if dir != self.dir:
             dir *= -1
             self.image = pygame.transform.rotate(self.image, dir) 
@@ -197,6 +199,8 @@ class Game:
         self.phasercountdown = PHASER_COUNTDOWN
         self.phasersnd = pygame.mixer.Sound(os.path.join(snd_folder, "tos_phaser_7.wav"))
         self.squashsnd = pygame.mixer.Sound(os.path.join(snd_folder, "squash.wav"))
+        self.mandiesnd = pygame.mixer.Sound(os.path.join(snd_folder, "man-die_1.wav"))
+        self.redshirt_count = REDSHIRT_COUNT
 
     def new(self):
         # Start a new grame
@@ -270,7 +274,8 @@ class Game:
             redshirt.direction = self.redshirts_pos[i][2]
             self.all_sprites.add(redshirt) 
             self.redshirts.append(redshirt)   
-            self.redshirt_list.add(redshirt)    
+            self.redshirt_list.add(redshirt)  
+            redshirt.id = i  
 
         # Background sound
         pygame.mixer.music.load(os.path.join(snd_folder, "tos_planet_3.wav"))
@@ -279,7 +284,8 @@ class Game:
 
         # Set sound levels
         self.squashsnd.set_volume(0.25) 
-        self.phasersnd.set_volume(0.25)            
+        self.phasersnd.set_volume(0.25)   
+        self.mandiesnd.set_volume(0.25)         
 
         # Let 'er rip!      
         self.run()
@@ -306,13 +312,20 @@ class Game:
         pygame.sprite.spritecollide(self.creature, self.tile_list, True)
 
         # Check for collisions with creature and reshirts
-        #pygame.sprite.spritecollide(self.creature, self.redshirt_list, True)   
+        redshirt_kill_list = pygame.sprite.spritecollide(self.creature, self.redshirt_list, True)
+        for redshirt in redshirt_kill_list:
+            self.mandiesnd.play() 
+            count = self.redshirt_count
+            for j in range(0, count):
+                if self.redshirts[j].id == redshirt.id:
+                    del self.redshirts[j] 
+                    self.redshirt_count -= 1
+                    break
         
         # Check for collisions with redshirts and eggs
-        for i in range(0, REDSHIRT_COUNT):
+        for i in range(0, self.redshirt_count):
             egg = pygame.sprite.spritecollide(self.redshirts[i], self.egg_list, True) 
             if egg:
-                #self.squashsnd.set_volume(0.25)
                 self.squashsnd.play() 
         
         # Determine if creature is tunneling
@@ -328,7 +341,7 @@ class Game:
                 self.creature.set_speed(3, 3)
 
         # Determine if redshirts need to manuver in tunnel
-        for i in range(0, REDSHIRT_COUNT):
+        for i in range(0, self.redshirt_count):
             x_index = self.redshirts[i].rect.x//TILESIZE
             y_index = self.redshirts[i].rect.y//TILESIZE           
             dir = self.redshirts[i].direction
@@ -420,7 +433,7 @@ class Game:
         creature_y_index = self.creature.rect.y//TILESIZE 
         self.phaserfire = False    
         self.phaser = []                            
-        for i in range(0, REDSHIRT_COUNT):
+        for i in range(0, self.redshirt_count):
             # Check for horizontal line of site
             redshirt_x_index = self.redshirts[i].rect.x//TILESIZE
             redshirt_y_index = self.redshirts[i].rect.y//TILESIZE  
@@ -472,7 +485,7 @@ class Game:
                 self.running = False
             # Reset game
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.playing = False                                                     
+                self.playing = False                                               
 
     def draw_background(self):
         for x in range(0, int(WIDTH/TILESIZE)):
@@ -494,10 +507,8 @@ class Game:
                 self.phasercountdown -= 1
         else:
             self.phasercountdown = random.randint(PHASER_COUNTDOWN/2,PHASER_COUNTDOWN)
-            #if self.phasersnd != None:
             if self.phasersnd != None:
                 self.phasersnd.stop()
-            #self.pahsersnd = None
 
         self.all_sprites.draw(self.screen)            
 
