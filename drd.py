@@ -205,6 +205,7 @@ class Game:
         self.mandiesnd4 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_4.wav"))
         self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav"))                                
         self.redshirt_count = REDSHIRT_COUNT
+        self.old_num = 0
 
     def new(self):
         # Start a new grame
@@ -311,6 +312,9 @@ class Game:
 
     def mandiesnd(self):
         num = random.randint(1,5)
+        while self.old_num == num:
+            num = random.randint(1,5)
+        self.old_num = num
         if num == 1:
             self.mandiesnd1.play()
         elif num == 2:
