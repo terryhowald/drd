@@ -199,7 +199,11 @@ class Game:
         self.phasercountdown = PHASER_COUNTDOWN
         self.phasersnd = pygame.mixer.Sound(os.path.join(snd_folder, "tos_phaser_7.wav"))
         self.squashsnd = pygame.mixer.Sound(os.path.join(snd_folder, "squash.wav"))
-        self.mandiesnd = pygame.mixer.Sound(os.path.join(snd_folder, "man-die_1.wav"))
+        self.mandiesnd1 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_1.wav"))
+        self.mandiesnd2 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_2.wav"))
+        self.mandiesnd3 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_3.wav"))
+        self.mandiesnd4 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_4.wav"))
+        self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav"))                                
         self.redshirt_count = REDSHIRT_COUNT
 
     def new(self):
@@ -266,6 +270,7 @@ class Game:
         self.all_sprites.add(self.creature)  
 
         # Create redshirt sprites
+        self.redshirt_count = REDSHIRT_COUNT
         self.redshirts = []
         for i in range(0, REDSHIRT_COUNT):
             redshirt = Enemy()
@@ -285,7 +290,7 @@ class Game:
         # Set sound levels
         self.squashsnd.set_volume(0.25) 
         self.phasersnd.set_volume(0.25)   
-        self.mandiesnd.set_volume(0.25)         
+        #self.mandiesnd.set_volume(0.25)         
 
         # Let 'er rip!      
         self.run()
@@ -304,6 +309,19 @@ class Game:
             self.update()
             self.draw()
 
+    def mandiesnd(self):
+        num = random.randint(1,5)
+        if num == 1:
+            self.mandiesnd1.play()
+        elif num == 2:
+            self.mandiesnd2.play()
+        elif num == 3:
+            self.mandiesnd3.play()
+        elif num == 4:
+            self.mandiesnd4.play()
+        elif num == 5:
+            self.mandiesnd5.play()
+
     def update(self):
         # Game loop - update
         self.all_sprites.update()
@@ -314,7 +332,7 @@ class Game:
         # Check for collisions with creature and reshirts
         redshirt_kill_list = pygame.sprite.spritecollide(self.creature, self.redshirt_list, True)
         for redshirt in redshirt_kill_list:
-            self.mandiesnd.play() 
+            self.mandiesnd()
             count = self.redshirt_count
             for j in range(0, count):
                 if self.redshirts[j].id == redshirt.id:
