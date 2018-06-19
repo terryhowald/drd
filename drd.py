@@ -571,7 +571,11 @@ class Game:
     def show_go_screen(self):
         # Game over/continue
         pass
-    
+
+# Center window
+os.environ['SDL_VIDEO_CENTERED'] = '1'
+
+# Start game
 g = Game()
 g.show_start_screen()
 while g.running:
