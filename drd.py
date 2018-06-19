@@ -206,7 +206,7 @@ class Game:
         self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav"))                                
         self.redshirt_count = REDSHIRT_COUNT
         self.old_num = 0
-        self.horta_trans = 255
+        self.horta_trans = ALPHA_MAX
 
     def new(self):
         # Start a new grame
@@ -509,7 +509,7 @@ class Game:
                 self.running = False
             # Reset game
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.playing = False                                               
+                self.playing = False                                             
 
     def draw_background(self):
         for x in range(0, int(WIDTH/TILESIZE)):
@@ -547,7 +547,20 @@ class Game:
 
     def show_start_screen(self):
         # Game splash/start screen
-        pass
+        start_img = pygame.image.load(os.path.join(img_folder, "start.png")).convert()
+        self.screen.fill(BLACK)
+        self.screen.blit(start_img, (START_SCREEN_X, START_SCREEN_Y))
+        pygame.display.flip()
+
+        display_instructions = True
+        while display_instructions and self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    display_instructions = False
+                if event.type == pygame.KEYDOWN:
+                    display_instructions = False
 
     def show_go_screen(self):
         # Game over/continue
