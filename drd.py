@@ -203,7 +203,9 @@ class Game:
         self.mandiesnd2 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_2.wav"))
         self.mandiesnd3 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_3.wav"))
         self.mandiesnd4 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_4.wav"))
-        self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav"))                                
+        self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav")) 
+        self.mandiesnd6 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_6.wav"))   
+        self.mandiesnd7 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_7.wav"))                                               
         self.redshirt_count = REDSHIRT_COUNT
         self.old_num = 0
         self.horta_trans = ALPHA_MAX
@@ -313,7 +315,7 @@ class Game:
             self.draw()
 
     def mandiesnd(self):
-        num = random.randint(1,5)
+        num = random.randint(1,7)
         while self.old_num == num:
             num = random.randint(1,5)
         self.old_num = num
@@ -327,6 +329,10 @@ class Game:
             self.mandiesnd4.play()
         elif num == 5:
             self.mandiesnd5.play()
+        elif num == 6:
+            self.mandiesnd6.play()  
+        elif num == 7:
+            self.mandiesnd7.play()                      
 
     def update(self):
         # Game loop - update
