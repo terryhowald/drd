@@ -552,6 +552,11 @@ class Game:
         pygame.display.flip()
 
     def show_start_screen(self):
+        # Background sound
+        pygame.mixer.music.load(os.path.join(snd_folder, "tos_sickbay_venus_drug.wav"))
+        pygame.mixer.music.play(-1)  
+        pygame.mixer.music.set_volume(0.5) 
+
         # Game splash/start screen
         start_img = pygame.image.load(os.path.join(img_folder, "start.png")).convert()
         self.screen.fill(BLACK)
@@ -568,16 +573,22 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     display_instructions = False
 
+        pygame.mixer.music.stop()
+
     def show_go_screen(self):
         # Game over/continue
         pass
 
-# Center window
+
+
+# Initialize game
 os.environ['SDL_VIDEO_CENTERED'] = '1'
+g = Game()
+
+# Show start screen
+g.show_start_screen()
 
 # Start game
-g = Game()
-g.show_start_screen()
 while g.running:
     g.new()
     g.show_go_screen()
