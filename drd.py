@@ -206,6 +206,7 @@ class Game:
         self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav"))                                
         self.redshirt_count = REDSHIRT_COUNT
         self.old_num = 0
+        self.horta_trans = 255
 
     def new(self):
         # Start a new grame
@@ -268,6 +269,7 @@ class Game:
         self.creature = Player()
         self.creature.rect.x = (random.randrange(WIDTH)//TILESIZE)*TILESIZE
         self.creature.rect.y = (random.randrange(HEIGHT)//TILESIZE)*TILESIZE
+        self.creature.image.set_alpha(self.horta_trans) 
         self.all_sprites.add(self.creature)  
 
         # Create redshirt sprites
@@ -523,7 +525,13 @@ class Game:
         if self.phaserfire:
             if not self.phasercountdown:
                 pygame.draw.line(self.screen,WHITE,(self.phaser[0], self.phaser[1]),(self.phaser[2], self.phaser[3]))
-                self.phasersnd.play()                   
+                self.phasersnd.play()    
+                self.horta_trans -= 1
+                if not self.horta_trans:
+                    self.playing = False
+                    self.running = False
+                else:
+                    self.creature.image.set_alpha(self.horta_trans)               
 
             else:
                 self.phasercountdown -= 1
