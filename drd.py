@@ -206,15 +206,20 @@ class Game:
         self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav")) 
         self.mandiesnd6 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_6.wav"))   
         self.mandiesnd7 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_7.wav"))                                               
-        self.redshirt_count = REDSHIRT_COUNT
+        self.redshirt_count = 0
+        self.redshirt_start = 0
         self.old_num = 0
         self.horta_trans = ALPHA_MAX
+        self.redshirts_killed = 0
+        self.eggs_saved = 0
 
     def new(self):
         # Start a new grame
         xmax = int(WIDTH/TILESIZE)
         ymax = int(HEIGHT/TILESIZE)       
         self.tile_map = [[1]*ymax for i in range(xmax)]
+
+        self.redshirt_start += 1
 
         # Generate random tunnels
         self.redshirts_pos = []
@@ -275,13 +280,22 @@ class Game:
         self.all_sprites.add(self.creature)  
 
         # Create redshirt sprites
-        self.redshirt_count = REDSHIRT_COUNT
+        self.redshirt_count = self.redshirt_start
         self.redshirts = []
-        for i in range(0, REDSHIRT_COUNT):
+        for i in range(0, self.redshirt_count):
             redshirt = Enemy()
-            redshirt.rect.x = self.redshirts_pos[i][0]*TILESIZE
-            redshirt.rect.y = self.redshirts_pos[i][1]*TILESIZE
-            redshirt.direction = self.redshirts_pos[i][2]
+            tunnel = i % NUMTUNNELS
+            redshirt.rect.x = self.redshirts_pos[tunnel][0]*TILESIZE
+            redshirt.rect.y = self.redshirts_pos[tunnel][1]*TILESIZE
+            redshirt.direction = self.redshirts_pos[tunnel][2] 
+            if redshirt.direction == DIR_LEFT:
+                redshirt.rect.x -= random.randint(50, 150)
+            if redshirt.direction == DIR_RIGHT:
+                redshirt.rect.x += random.randint(50, 150)   
+            if redshirt.direction == DIR_UP:
+                redshirt.rect.y -= random.randint(50, 150)
+            if redshirt.direction == DIR_DOWN:
+                redshirt.rect.y += random.randint(50, 150)                                         
             self.all_sprites.add(redshirt) 
             self.redshirts.append(redshirt)   
             self.redshirt_list.add(redshirt)  
@@ -313,6 +327,9 @@ class Game:
             self.events()
             self.update()
             self.draw()
+
+        if self.running == True:
+            pygame.time.delay(1000)
 
     def mandiesnd(self):
         num = random.randint(1,7)
@@ -352,6 +369,10 @@ class Game:
                     self.redshirt_count -= 1
                     break
         
+        # Check redshirt count
+        if self.redshirt_count == 0:
+            self.playing = False
+
         # Check for collisions with redshirts and eggs
         for i in range(0, self.redshirt_count):
             egg = pygame.sprite.spritecollide(self.redshirts[i], self.egg_list, True) 
@@ -576,9 +597,16 @@ class Game:
         pygame.mixer.music.stop()
 
     def show_go_screen(self):
-        # Game over/continue
-        pass
 
+        if self.running == True:
+            pygame.time.delay(1000)   
+            
+        # Game over/continue
+        self.screen.fill(BLACK)
+        pygame.display.flip()
+
+        if self.running == True:
+            pygame.time.delay(1000)        
 
 
 # Initialize game
