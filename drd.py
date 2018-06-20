@@ -205,7 +205,8 @@ class Game:
         self.mandiesnd4 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_4.wav"))
         self.mandiesnd5 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_5.wav")) 
         self.mandiesnd6 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_6.wav"))   
-        self.mandiesnd7 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_7.wav"))                                               
+        self.mandiesnd7 = pygame.mixer.Sound(os.path.join(snd_folder, "man_die_7.wav"))  
+        self.mandiesnd8 = pygame.mixer.Sound(os.path.join(snd_folder, "wilhelm_scream.wav"))                                                       
         self.redshirt_count = 0
         self.redshirt_start = 0
         self.old_num = 0
@@ -332,9 +333,9 @@ class Game:
             pygame.time.delay(1000)
 
     def mandiesnd(self):
-        num = random.randint(1,7)
+        num = random.randint(1,NUM_SCREAMS)
         while self.old_num == num:
-            num = random.randint(1,5)
+            num = random.randint(1,NUM_SCREAMS)
         self.old_num = num
         if num == 1:
             self.mandiesnd1.play()
@@ -349,7 +350,9 @@ class Game:
         elif num == 6:
             self.mandiesnd6.play()  
         elif num == 7:
-            self.mandiesnd7.play()                      
+            self.mandiesnd7.play()
+        elif num == 8:
+            self.mandiesnd8.play()                                    
 
     def update(self):
         # Game loop - update
