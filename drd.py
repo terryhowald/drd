@@ -557,7 +557,7 @@ class Game:
                 pygame.draw.line(self.screen,WHITE,(self.phaser[0], self.phaser[1]),(self.phaser[2], self.phaser[3]))
                 self.phasersnd.play()    
                 self.horta_trans -= 1
-                if not self.horta_trans:
+                if self.horta_trans < DEAD_VALUE:
                     self.playing = False
                     self.running = False
                 else:
@@ -597,20 +597,59 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     display_instructions = False
 
+        # Stop background music
         pygame.mixer.music.stop()
 
     def show_go_screen(self):
 
         if self.running == True:
-            pygame.time.delay(1000)   
+            # Delay to let screams die down
+            pygame.time.delay(2000) 
+
+        # Stop background music
+        pygame.mixer.music.stop() 
+
+        # Background sound
+        pygame.mixer.music.load(os.path.join(snd_folder, "tos_sickbayscannerheartbeats.wav"))
+        pygame.mixer.music.play(-1)  
+        pygame.mixer.music.set_volume(0.5)         
             
-        # Game over/continue
+        # Game over/continue  
+        go_img = pygame.image.load(os.path.join(img_folder, "go.png")).convert()
         self.screen.fill(BLACK)
+        self.screen.blit(go_img, (START_SCREEN_X, START_SCREEN_Y))  
+
+        self.eggs_saved += len(self.egg_list)
+        self.redshirts_killed += (self.redshirt_start - len(self.redshirt_list))
+
+        kills = self.redshirts_killed*10
+        font = pygame.font.Font(None, 60)
+        text = font.render(str(kills), True, WHITE)        
+        self.screen.blit(text, [700, 315])
+
+        saves = self.eggs_saved
+        text = font.render(str(saves), True, WHITE)        
+        self.screen.blit(text, [700, 415])     
+
+        total = kills + saves
+        text = font.render(str(total), True, WHITE)        
+        self.screen.blit(text, [700, 515])                    
+
         pygame.display.flip()
 
-        if self.running == True:
-            pygame.time.delay(1000)        
+        display_instructions = True
+        while display_instructions:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    display_instructions = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    display_instructions = False
+                if event.type == pygame.KEYDOWN:
+                    display_instructions = False        
 
+        # Stop background music
+        pygame.mixer.music.stop()             
+       
 
 # Initialize game
 os.environ['SDL_VIDEO_CENTERED'] = '1'

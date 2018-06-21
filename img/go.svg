@@ -16,8 +16,8 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="start.svg"
-   inkscape:export-filename="/home/terry/repos/drd/img/start.png"
+   sodipodi:docname="go.svg"
+   inkscape:export-filename="/home/terry/repos/drd/img/go.png"
    inkscape:export-xdpi="75"
    inkscape:export-ydpi="75">
   <defs
@@ -77,7 +77,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="393.16875"
+     inkscape:cx="368.16875"
      inkscape:cy="341.82746"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -97,7 +97,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -109,194 +109,27 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="58.229004"
-       y="161.72218"
-       id="text817"><tspan
-         sodipodi:role="line"
-         id="tspan815"
-         x="58.229004"
-         y="161.72218"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:19.75555611px;font-family:Trek;-inkscape-font-specification:'Trek Bold';fill:#ffffff;stroke-width:0.26458332">YOU ARE</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="86.516685"
-       y="202.25366"
-       id="text821"><tspan
-         sodipodi:role="line"
-         id="tspan819"
-         x="86.516685"
-         y="202.25366"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:19.75555611px;font-family:Trek;-inkscape-font-specification:'Trek Bold';fill:#ffffff;stroke-width:0.26458332">YOU MUST STOP</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="49.761303"
-       y="244.64104"
+       x="78.48616"
+       y="183.78687"
        id="text825"><tspan
          sodipodi:role="line"
          id="tspan823"
-         x="49.761303"
-         y="244.64104"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:19.75555611px;font-family:Trek;-inkscape-font-specification:'Trek Bold';fill:#ffffff;stroke-width:0.26458332">BEFORE ALL </tspan></text>
+         x="78.48616"
+         y="183.78687"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:19.75555611px;font-family:Trek;-inkscape-font-specification:'Trek Bold';fill:#ffffff;stroke-width:0.26458332">DESTROYED X 10 = </tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="88.069733"
-       y="286.83255"
+       x="117.16769"
+       y="217.7399"
        id="text829"><tspan
          sodipodi:role="line"
          id="tspan827"
-         x="88.069733"
-         y="286.83255"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:19.75555611px;font-family:Trek;-inkscape-font-specification:'Trek Bold';fill:#ffffff;stroke-width:0.26458332">ARE DESTROYED</tspan></text>
+         x="117.16769"
+         y="217.7399"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:19.75555611px;font-family:Trek;-inkscape-font-specification:'Trek Bold';fill:#ffffff;stroke-width:0.26458332">SAVED X 1 =</tspan></text>
     <g
-       id="g1033"
-       transform="matrix(0.45,0,0,0.45,35.851867,91.978149)">
-      <path
-         sodipodi:nodetypes="csssssssssc"
-         inkscape:original-d="m 206.53083,104.84455 c -3.02932,1.82661 -0.31155,2.1379 -4.14268,2.6727 -3.83113,0.5348 -7.83964,11.04688 -11.75986,16.57071 -3.92022,5.52384 0.44572,19.33223 0.66818,28.99875 0.22246,9.66651 -1.33609,11.13596 -2.00453,16.70434 -0.66843,5.56838 18.1746,4.63241 27.2615,6.94901 9.08689,2.3166 22.3188,1.99206 33.40869,-2.40543 7.75055,-3.07333 0.75752,-15.0119 2.40542,-28.19693 1.6479,-13.18503 -1.87062,-28.77629 -5.21176,-37.2841 -3.34113,-8.50782 -13.71957,-7.75109 -24.18789,-8.41899 -8.5199,-0.54359 -13.40775,2.58334 -16.43707,4.40994 z"
-         inkscape:path-effect="#path-effect4524"
-         inkscape:connector-curvature="0"
-         id="path4522"
-         d="m 206.53083,104.84455 c -1.44254,0.78983 -2.82038,1.69482 -4.14268,2.6727 -5.56538,4.11577 -10.27385,9.81018 -11.75986,16.57071 -1.04296,4.74488 -0.45042,9.67952 0.19313,14.49486 0.64355,4.81534 1.33277,9.72205 0.47505,14.50389 -0.50381,2.80875 -1.53006,5.49665 -2.17234,8.27701 -0.64229,2.78035 -0.88092,5.77345 0.16781,8.42733 0.92375,2.33761 2.79917,4.22792 4.99642,5.44849 2.19724,1.22058 4.7018,1.80946 7.20669,2.01746 5.00977,0.416 10.03282,-0.63761 15.05839,-0.51694 5.80682,0.13943 11.46748,1.83975 17.25548,2.32729 2.894,0.24377 5.84002,0.17892 8.65676,-0.52863 2.81674,-0.70756 5.50736,-2.08792 7.49645,-4.20409 1.67339,-1.78029 2.80364,-4.02921 3.44727,-6.38619 0.64364,-2.35699 0.81586,-4.82363 0.72888,-7.26537 -0.17394,-4.88348 -1.36623,-9.67556 -1.77073,-14.54537 -0.53025,-6.3837 0.29914,-12.80169 0.172,-19.20611 -0.0636,-3.20221 -0.36962,-6.41544 -1.19219,-9.51085 -0.82256,-3.09541 -2.17628,-6.07781 -4.19157,-8.56714 -2.79208,-3.44883 -6.7693,-5.82744 -11.01163,-7.12854 -4.24232,-1.30109 -8.7479,-1.57285 -13.17626,-1.29045 -5.70687,0.36394 -11.42123,1.66364 -16.43707,4.40994 z"
-         style="fill:#ff6600;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      <ellipse
-         ry="8.0849028"
-         rx="4.4099469"
-         cy="122.81843"
-         cx="205.99629"
-         id="path4526"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="8.15172"
-         rx="4.0090427"
-         cy="144.13316"
-         cx="205.99629"
-         id="path4528"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="6.3476515"
-         rx="1.4699824"
-         cy="124.82296"
-         cx="194.37007"
-         id="path4532"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         transform="rotate(-8.0217246)"
-         ry="8.2853556"
-         rx="1.8708866"
-         cy="170.22348"
-         cx="173.11128"
-         id="path4534"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="6.5481033"
-         rx="6.481286"
-         cy="112.99627"
-         cx="220.36203"
-         id="path4536"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="8.15172"
-         rx="7.4835467"
-         cy="134.51144"
-         cx="220.69612"
-         id="path4538"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="6.5481033"
-         rx="6.2140164"
-         cy="154.69032"
-         cx="220.49567"
-         id="path4540"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="6.9490075"
-         rx="3.9422255"
-         cy="119.94529"
-         cx="235.06186"
-         id="path4542"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="6.9490075"
-         rx="4.2094951"
-         cy="146.9395"
-         cx="235.59639"
-         id="path4544"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         transform="matrix(1,0,-0.16779935,0.98582117,0,0)"
-         ry="6.3711696"
-         rx="1.3363476"
-         cy="167.75975"
-         cx="276.77576"
-         id="path4546"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="6.1471992"
-         rx="1.5367998"
-         cy="139.99048"
-         cx="247.35625"
-         id="path4548"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         transform="rotate(-6.7464152)"
-         ry="6.4144688"
-         rx="1.4699823"
-         cy="145.83058"
-         cx="231.08987"
-         id="path4552"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         transform="rotate(5.5533371)"
-         ry="5.4790254"
-         rx="1.1358955"
-         cy="142.979"
-         cx="208.04704"
-         id="path4554"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         inkscape:transform-center-y="-1.7008832"
-         inkscape:transform-center-x="0.6681768"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="ellipse4556"
-         cx="-151.53479"
-         cy="269.06982"
-         rx="1.2703702"
-         ry="8.234128"
-         transform="matrix(0.22023046,-0.97544787,0.99490692,0.10079796,0,0)" />
-      <ellipse
-         inkscape:transform-center-y="-5.2117559"
-         inkscape:transform-center-x="-11.75986"
-         transform="rotate(-95.828054)"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="ellipse4558"
-         cx="-193.45166"
-         cy="186.31332"
-         rx="1.5367998"
-         ry="6.1471992" />
-      <ellipse
-         transform="rotate(-85.558383)"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="ellipse4560"
-         cx="-148.26894"
-         cy="247.42097"
-         rx="3.9422255"
-         ry="6.9490075" />
-      <ellipse
-         inkscape:transform-center-y="-4.2763126"
-         inkscape:transform-center-x="-7.0826427"
-         transform="rotate(-85.162643)"
-         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="ellipse4562"
-         cx="-146.79242"
-         cy="220.2955"
-         rx="4.2094951"
-         ry="6.9490075" />
-    </g>
-    <g
-       transform="matrix(0.45,0,0,0.45,190.39065,80.796367)"
+       transform="matrix(0.45,0,0,0.45,35.710662,62.16214)"
        id="layer1-1"
        inkscape:label="Layer 1">
       <rect
@@ -487,7 +320,7 @@
          y="244.65933" />
     </g>
     <g
-       transform="matrix(0.75,0,0,0.75,94.164132,30.489382)"
+       transform="matrix(0.75,0,0,0.75,62.194406,3.804263)"
        id="layer1-3"
        inkscape:label="Layer 1">
       <g
@@ -527,5 +360,16 @@
          x="61.858761"
          y="120.71186"
          style="font-size:25.39999962px;fill:#ffffff;stroke-width:0.26458332">DIE, REDSHIRT, DIE!</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="96.929825"
+       y="251.69295"
+       id="text829-3"><tspan
+         sodipodi:role="line"
+         id="tspan827-6"
+         x="96.929825"
+         y="251.69295"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:19.75555611px;font-family:Trek;-inkscape-font-specification:'Trek Bold';fill:#ffffff;stroke-width:0.26458332">TOTAL SCORE = </tspan></text>
   </g>
 </svg>
