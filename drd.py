@@ -213,6 +213,7 @@ class Game:
         self.horta_trans = ALPHA_MAX
         self.redshirts_killed = 0
         self.eggs_saved = 0
+        self.horta_dead = False
 
     def new(self):
         # Start a new grame
@@ -560,6 +561,7 @@ class Game:
                 if self.horta_trans < DEAD_VALUE:
                     self.playing = False
                     self.running = False
+                    self.horta_dead = True
                 else:
                     self.creature.image.set_alpha(self.horta_trans)               
 
@@ -606,7 +608,8 @@ class Game:
             # Delay to let screams die down
             pygame.time.delay(2000) 
         else:
-            return
+            if self.horta_dead == False:
+                return
 
         # Stop background music
         pygame.mixer.music.stop() 
@@ -644,6 +647,7 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     display_instructions = False
+                    self.running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     display_instructions = False
                 if event.type == pygame.KEYDOWN:
