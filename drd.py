@@ -605,6 +605,8 @@ class Game:
         if self.running == True:
             # Delay to let screams die down
             pygame.time.delay(2000) 
+        else:
+            return
 
         # Stop background music
         pygame.mixer.music.stop() 
