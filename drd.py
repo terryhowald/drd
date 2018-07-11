@@ -1,4 +1,10 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+
+"""Die, Redshirt, Die! - a tile-based pygame.
+
+Written by Terry Howald
+terry.howald@gmail.com
+"""
 
 import os
 import pygame
@@ -656,17 +662,21 @@ class Game:
         # Stop background music
         pygame.mixer.music.stop()             
        
+def main():
+    # Initialize game
+    os.environ['SDL_VIDEO_CENTERED'] = '1'
+    g = Game()
 
-# Initialize game
-os.environ['SDL_VIDEO_CENTERED'] = '1'
-g = Game()
+    # Show start screen
+    g.show_start_screen()
 
-# Show start screen
-g.show_start_screen()
+    # Start game
+    while g.running:
+        g.new()
+        g.show_go_screen()
 
-# Start game
-while g.running:
-    g.new()
-    g.show_go_screen()
+    # Done, so shutdown pygame
+    pygame.quit()
 
-pygame.quit()
+if __name__ == '__main__':
+    main()
