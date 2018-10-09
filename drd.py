@@ -94,8 +94,7 @@ class Enemy(pygame.sprite.Sprite):
             # Set new image orientation
             if self.direction == DIR_RIGHT:
                 self.image = pygame.transform.flip(self.image, True, False)                 
-
-                     
+                    
 class Player(pygame.sprite.Sprite):
     # Sprite for the player
     def __init__(self):
@@ -176,7 +175,6 @@ class Player(pygame.sprite.Sprite):
     def set_speed(self, xspeed, yspeed):
         self.x_speed = xspeed
         self.y_speed = yspeed
-
 
 class Game:
     def __init__(self):
@@ -636,15 +634,15 @@ class Game:
         kills = self.redshirts_killed*10
         font = pygame.font.Font(None, 60)
         text = font.render(str(kills), True, WHITE)        
-        self.screen.blit(text, [700, 315])
+        self.screen.blit(text, [580, 235])
 
         saves = self.eggs_saved
         text = font.render(str(saves), True, WHITE)        
-        self.screen.blit(text, [700, 415])     
+        self.screen.blit(text, [580, 335])     
 
         total = kills + saves
         text = font.render(str(total), True, WHITE)        
-        self.screen.blit(text, [700, 515])                    
+        self.screen.blit(text, [580, 435])                    
 
         pygame.display.flip()
 
